@@ -1,24 +1,58 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column       |Type      |Options    |
+|-------------|----------|-----------|
+|nickname     |string    |NOT:NULL   |
+|email        |string    |NOT:NULL   |
+|password     |string    |NOT:NULL   |
+|kanji_name   |string    |NOT:NULL   |
+|katakana_name|string    |NOT:NULL   |
+|birthday     |string    |NOT:NULL   |
+|item         |references|foreign_key: true|
 
-Things you may want to cover:
+### Association
+- has_many : items
+- has_many : purchases
 
-* Ruby version
+## itemsテーブル
 
-* System dependencies
+|Column       |Type      |Options    |
+|-------------|----------|-----------|
+|name         |string    |NOT:NULL   |
+|category     |string    |NOT:NULL   |
+|price        |string    |NOT:NULL   |
+|explanation  |string    |NOT:NULL   |
+|state        |string    |NOT:NULL   |
+|deliveryfee  |string    |NOT:NULL   |
+|area         |string    |NOT:NULL   |
+|day          |string    |NOT:NULL   |
+|user         |references|foreign_key: true|
 
-* Configuration
+### Association
+- belongs_to : users
+- has_one : purchases
 
-* Database creation
+##　purchasesテーブル
 
-* Database initialization
+|Column       |Type      |Options    |
+|-------------|----------|-----------|
+|user         |references|foreign_key: true|
+|item         |references|foreign_key: true|
 
-* How to run the test suite
+### Association
+- belongs_to : users
+- has_one : items
+- has_pne : streetaddress
 
-* Services (job queues, cache servers, search engines, etc.)
+## streetaddressテーブル
 
-* Deployment instructions
+|Column       |Type      |Options    |
+|-------------|----------|-----------|
+|postalcode   |string    |NOT:NULL   |
+|prefectures  |string    |NOT:NULL   |
+|municipality |string    |NOT:NULL   |
+|address      |string    |NOT:NULL   |
+|phonenumber  |string    |NOT:NULL   |
 
-* ...
+## Association
+- has_one : purchases
