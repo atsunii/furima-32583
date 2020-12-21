@@ -55,7 +55,7 @@
 |address         |string    |null: false  |
 |building_name   |string    |             |
 |phonenumber     |string    |null: false  |
-|purchases       |references|foreign_key: true|
+|purchase        |references|foreign_key: true|
 
 ## Association
 - belongs_to : purchase
