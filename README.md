@@ -1,14 +1,15 @@
 ## usersテーブル
 
-|Column       |Type      |Options    |
-|-------------|----------|-----------|
-|nickname     |string    |NOT:NULL   |
-|email        |string    |NOT:NULL   |
-|password     |string    |NOT:NULL   |
-|kanji_name   |string    |NOT:NULL   |
-|katakana_name|string    |NOT:NULL   |
-|birthday     |string    |NOT:NULL   |
-|item         |references|foreign_key: true|
+|Column             |Type            |Options       |
+|-------------------|----------------|--------------|
+|nickname           |string    |null: false   |
+|email              |string    |null: false, unique: true|
+|encrypted_password |string    |null: false   |
+|kanji_first_name   |string    |null: false   |
+|kanji_last_name    |string    |null: false   |
+|katakana_first_name|string    |null: false   |
+|katakana_first_name|string    |null: false   |
+|birthday           |date      |null: false   |
 
 ### Association
 - has_many : items
@@ -16,21 +17,21 @@
 
 ## itemsテーブル
 
-|Column       |Type      |Options    |
-|-------------|----------|-----------|
-|name         |string    |NOT:NULL   |
-|category     |string    |NOT:NULL   |
-|price        |string    |NOT:NULL   |
-|explanation  |string    |NOT:NULL   |
-|state        |string    |NOT:NULL   |
-|deliveryfee  |string    |NOT:NULL   |
-|area         |string    |NOT:NULL   |
-|day          |string    |NOT:NULL   |
-|user         |references|foreign_key: true|
+|Column        |Type      |Options      |
+|--------------|----------|-------------|
+|name          |string    |null: false  |
+|category_id   |integer   |null: false  |
+|price         |integer   |null: false  |
+|explanation   |text      |null: false  |
+|state_id      |integer   |null: false  |
+|deliveryfee_id|integer   |null: false  |
+|area_id       |integer   |null: false  |
+|day_id        |integer   |null: false  |
+|user          |references|foreign_key: true|
 
 ### Association
-- belongs_to : users
-- has_one : purchases
+- belongs_to : user
+- has_one : purchase
 
 ##　purchasesテーブル
 
@@ -40,19 +41,21 @@
 |item         |references|foreign_key: true|
 
 ### Association
-- belongs_to : users
-- has_one : items
-- has_pne : streetaddress
+- belongs_to : user
+- has_one : item
+- has_one : streetaddress
 
 ## streetaddressテーブル
 
-|Column       |Type      |Options    |
-|-------------|----------|-----------|
-|postalcode   |string    |NOT:NULL   |
-|prefectures  |string    |NOT:NULL   |
-|municipality |string    |NOT:NULL   |
-|address      |string    |NOT:NULL   |
-|phonenumber  |string    |NOT:NULL   |
+|Column          |Type      |Options      |
+|----------------|----------|-------------|
+|postalcode      |string    |null: false  |
+|prefecture_id   |integer   |null: false  |
+|municipality    |string    |null: false  |
+|address         |string    |null: false  |
+|building_name   |string    |             |
+|phonenumber     |string    |null: false  |
+|purchases       |references|foreign_key: true|
 
 ## Association
-- has_one : purchases
+- belongs_to : purchase
