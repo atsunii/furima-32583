@@ -25,7 +25,7 @@
 |explanation   |text      |null: false  |
 |state_id      |integer   |null: false  |
 |deliveryfee_id|integer   |null: false  |
-|area_id       |integer   |null: false  |
+|prefecture_id |integer   |null: false  |
 |day_id        |integer   |null: false  |
 |user          |references|foreign_key: true|
 
@@ -42,7 +42,7 @@
 
 ### Association
 - belongs_to : user
-- has_one : item
+- belongs_to : item
 - has_one : streetaddress
 
 ## streetaddressテーブル
