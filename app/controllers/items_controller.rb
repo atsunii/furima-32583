@@ -2,17 +2,17 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    #@items = Item.all.order('created_at DESC')
+    @items = Item.all.order("items.name ASC")
   end
 
   def new
-    @items = Item.new
+    @item = Item.new
   end
 
   def create
-    @items = Item.new(item_params)
+    @item = Item.new(item_params)
     if @items.save
-      redirect_to root_path
+      redirect_to item_path(@item.id)
     else
       render :new
     end
