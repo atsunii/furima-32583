@@ -41,17 +41,17 @@ RSpec.describe Item, type: :model do
       it 'priceが全角文字だと出品できない' do
         @item.price = '１０００００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceが半角英数混合だと出品できない' do
         @item.price = 'a0000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceが半角英語だけだと出品できない' do
         @item.price = 'aaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'category_idが空だと出品できない' do
         @item.category_id = nil

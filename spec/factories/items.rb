@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :item do
-    name { 'mono'}
+    name { 'mono' }
     explanation { 'mac' }
-    price { 100000 }
+    price { 100_000 }
     category_id { 2 }
     state_id { 2 }
     deliveryfee_id { 2 }
