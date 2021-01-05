@@ -30,6 +30,7 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+    redirect_to :root unless @item.user == current_user
   end
 
   private
