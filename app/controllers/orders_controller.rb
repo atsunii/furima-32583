@@ -20,12 +20,9 @@ class OrdersController < ApplicationController
 
   private
 
-  def token_params
-    params.permit(:token)
-  end
-
   def order_params
-    params.permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number, :item_id, :token).merge(user_id: current_user.id)
+    params.permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number, :item_id,
+                  :token).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -33,12 +30,12 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: token_params[:token],
-        currency: 'jpy'
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: order_params[:token],
+      currency: 'jpy'
+    )
   end
 
   def move_to_index

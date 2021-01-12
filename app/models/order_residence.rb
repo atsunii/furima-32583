@@ -8,6 +8,8 @@ class OrderResidence
     validates :address
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }
     validates :token
+    validates :item_id
+    validates :user_id
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 
