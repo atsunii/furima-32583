@@ -11,11 +11,16 @@ class ItemsController < ApplicationController
 
   def create
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     @items = Item.new(item_params)
     if @items.save
 =======
     @item = Item.new(item_params)
     if @item.save
+>>>>>>> Stashed changes
+=======
+    @items = Item.new(item_params)
+    if @items.save
 >>>>>>> Stashed changes
       redirect_to root_path
     else
